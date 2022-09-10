@@ -3,6 +3,8 @@ package com.cakemonster.controller;
 import com.cakemonster.feign.VideoService;
 import com.cakemonster.model.Video;
 import com.cakemonster.model.VideoOrder;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,7 +17,11 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("api/v1/order")
+@RefreshScope
 public class OrderController {
+
+    @Value("${test.dynamic-property}")
+    private String dynamicProperty;
 
     private final VideoService videoService;
 
@@ -35,5 +41,10 @@ public class OrderController {
     @RequestMapping("/save")
     public int save(@RequestBody Video video) {
         return videoService.save(video);
+    }
+
+    @RequestMapping("/getDynamicProperty")
+    public String getDynamicProperty() {
+        return dynamicProperty;
     }
 }
