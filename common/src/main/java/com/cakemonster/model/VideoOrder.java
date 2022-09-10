@@ -1,5 +1,9 @@
 package com.cakemonster.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import java.util.Date;
 
 /**
@@ -8,6 +12,9 @@ import java.util.Date;
  * @author cakemonster
  * @date 2022/9/10
  */
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class VideoOrder {
 
     private Integer id;
